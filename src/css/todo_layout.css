@@ -43,7 +43,9 @@ body {
 .home_list_link {}
 
 /* LIST SCREEN CONTROLS */
-#list_heading {}
+#list_heading {
+  
+}
 #list_trash {
   position: absolute;
   left: 85%;

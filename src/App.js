@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     switch(this.state.currentScreen) {
       case AppScreen.HOME_SCREEN:
-        return <HomeScreen 
+        return <HomeScreen
         loadList={this.loadList.bind(this)} 
         todoLists={this.state.todoLists} />;
       case AppScreen.LIST_SCREEN:            
