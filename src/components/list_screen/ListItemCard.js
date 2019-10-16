@@ -8,10 +8,10 @@ export class ListItemCard extends Component {
                     {this.props.listItem.description}
                 </div>
                 <div className='list_item_card_assigned_to'>
-                    Assigned To: <strong>{this.props.listItem.assignedTo}</strong>
+                    Assigned To: <strong>{this.props.listItem.assigned_to}</strong>
                 </div>
                 <div className='list_item_card_due_date'>
-                    {this.props.listItem.dueDate}
+                    {this.props.listItem.due_date}
                 </div>
                 <div className='list_item_card_completed'>
                     {this.props.listItem.completed}
