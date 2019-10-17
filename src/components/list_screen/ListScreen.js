@@ -51,17 +51,33 @@ export class ListScreen extends Component {
         dialog.classList.remove("is_visible")
     }
 
-    moveItemUp = () => {
-        
+    moveItemUp = (index) => {
+        if ((0 < index) && (index < this.state.todoList.items.length)) {
+            let newTodoList = this.state.todoList
+            let newListItems = this.state.todoList.items
+            let temp = newListItems[index]
+            newListItems[index] = newListItems[index-1]
+            newListItems[index-1] = temp
+
+            newTodoList.items = newListItems
+            this.setState({ todoList: newTodoList })
+        }
     }
 
-    moveItemDown() {
+    moveItemDown= (index) => {
+        if ((this.state.todoList.items.length > 1) && (index < this.state.todoList.items.length-1)) {
+            let newTodoList = this.state.todoList
+            let newListItems = this.state.todoList.items
+            let temp = newListItems[index]
+            newListItems[index] = newListItems[index+1]
+            newListItems[index+1] = temp
 
+            newTodoList.items = newListItems
+            this.setState({ todoList: newTodoList })
+        }
     }
 
     deleteItem = (key) => {
-        console.log(key)
-        console.log("hello")
         let newTodoList = this.state.todoList
         let newListItems = [...newTodoList.items.filter(item => item.key !== key)]
         newTodoList.items = newListItems

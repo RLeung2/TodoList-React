@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 
 export class ListItemCard extends Component {
     isCompletedText = () => {
-        console.log(this.props.listItem.completed)
         if (this.props.listItem.completed){
             return "Completed"
         }
@@ -31,8 +30,8 @@ export class ListItemCard extends Component {
                     < this.isCompletedText />
                 </div>
                 <div className="list_item_card_toolbar">
-                    <div className="list_item_card_button" onClick={this.props.moveItemUp.bind(this.props.keyy)}>&#x21e7;</div>
-                    <div className="list_item_card_button" onClick={this.props.moveItemDown.bind(this.props.keyy)}>&#x21e9;</div>
+                    <div className="list_item_card_button" onClick={this.props.moveItemUp.bind(this, this.props.index)}>&#x21e7;</div>
+                    <div className="list_item_card_button" onClick={this.props.moveItemDown.bind(this, this.props.index)}>&#x21e9;</div>
                     <div className="list_item_card_button" onClick={this.props.deleteItem.bind(this, this.props.listItem.key)}>&#10005;</div>
                 </div>
             </div>

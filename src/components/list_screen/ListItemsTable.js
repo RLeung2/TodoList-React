@@ -11,8 +11,9 @@ export class ListItemsTable extends Component {
                     <div className="list_item_status_header">Status</div>
                 </div>
                 {
-                    this.props.todoList.items.map((todoItem)=>(
+                    this.props.todoList.items.map((todoItem, index)=>(
                         <ListItemCard
+                            index={index}
                             moveItemUp={this.props.moveItemUp} 
                             moveItemDown={this.props.moveItemDown} 
                             deleteItem={this.props.deleteItem} 
