@@ -35,11 +35,15 @@ export class ListScreen extends Component {
         this.props.todoList.owner = e.target.value
     }
 
+    processDeleteList = (key) => {
+        console.log(key)
+    }
+
     render() {
         return (
             <div id="todo_list">
                 <ListHeading goHome={this.props.goHome} />
-                <ListTrash />
+                <ListTrash processDeleteList={this.processDeleteList.bind(this, this.props.todoList.key)}/>
                 <div id="list_details_container">
                     <div id="list_details_name_container" className="text_toolbar">
                         <span id="list_name_prompt">Name:</span>
@@ -63,6 +67,7 @@ export class ListScreen extends Component {
                     </div>
                 </div>
                 <ListItemsTable todoList={this.props.todoList} />
+                <ListDeleteModal />
             </div>
         )
     }

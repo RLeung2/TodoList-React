@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class ListTrash extends Component {
+export class ListDeleteModal extends Component {
 
     render() {
         return (
@@ -9,4 +9,4 @@ export class ListTrash extends Component {
     }
 }
 
-export default ListTrash
+export default ListDeleteModal
