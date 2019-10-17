@@ -15,7 +15,6 @@ class App extends Component {
     currentScreen: AppScreen.HOME_SCREEN,
     todoLists: testTodoListData.todoLists,
     currentList: null,
-    currentListItems: null
   }
 
   goHome = () => {
@@ -36,12 +35,6 @@ class App extends Component {
     this.goHome();
   }
 
-  deleteItem = (key) => {
-    console.log(key)
-    console.log(this.state.currentList.items.filter(item => item.key !== key))
-    this.setState( {currentList: this.state.currentList.items.filter(item => item.key !== key)} )
-  }
-
   render() {
     switch(this.state.currentScreen) {
       case AppScreen.HOME_SCREEN:
@@ -50,7 +43,6 @@ class App extends Component {
         todoLists={this.state.todoLists} />;
       case AppScreen.LIST_SCREEN:            
         return <ListScreen
-          deleteItem={this.deleteItem}
           deleteList={this.deleteList}
           goHome={this.goHome.bind(this)}
           todoList={this.state.currentList} />;

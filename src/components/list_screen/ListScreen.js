@@ -9,7 +9,7 @@ export class ListScreen extends Component {
     state = {
         name: this.props.todoList.name,
         owner: this.props.todoList.owner,
-        todoListItems: this.props.todoList.items
+        todoList: this.props.todoList
     }
 
     getListName() {
@@ -61,8 +61,11 @@ export class ListScreen extends Component {
 
     deleteItem = (key) => {
         console.log(key)
-        this.setState({ todoListItems: [...this.state.todoListItems.filter(item => item.key !== key)] });
-        console.log(this.state.todoListItems)
+        console.log("hello")
+        let newTodoList = this.state.todoList
+        let newListItems = [...newTodoList.items.filter(item => item.key !== key)]
+        newTodoList.items = newListItems
+        this.setState({ todoList: newTodoList });
     }
 
     render() {
@@ -92,7 +95,7 @@ export class ListScreen extends Component {
                         />
                     </div>
                 </div>
-                <ListItemsTable todoList={this.props.todoList} moveItemUp={this.moveItemUp} moveItemDown={this.moveItemDown} deleteItem={this.props.deleteItem}/>
+                <ListItemsTable todoList={this.props.todoList} moveItemUp={this.moveItemUp} moveItemDown={this.moveItemDown} deleteItem={this.deleteItem}/>
                 <ListDeleteModal confirmDelete={this.confirmDelete} cancelDelete={this.cancelDelete}/>
             </div>
         )
