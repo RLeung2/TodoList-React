@@ -12,7 +12,10 @@ export class ListItemsTable extends Component {
                 </div>
                 {
                     this.props.todoList.items.map((todoItem)=>(
-                        <ListItemCard 
+                        <ListItemCard
+                            moveItemUp={this.props.moveItemUp} 
+                            moveItemDown={this.props.moveItemDown} 
+                            deleteItem={this.props.deleteItem} 
                             key={todoItem.key}
                             listItem={todoItem} />
                     ))

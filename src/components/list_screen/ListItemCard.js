@@ -30,6 +30,11 @@ export class ListItemCard extends Component {
                 <div className='list_item_card_completed' style={this.isCompletedStyle()}>
                     < this.isCompletedText />
                 </div>
+                <div className="list_item_card_toolbar">
+                    <div className="list_item_card_button" onClick={this.props.moveItemUp.bind(this.props.keyy)}>&#x21e7;</div>
+                    <div className="list_item_card_button" onClick={this.props.moveItemDown.bind(this.props.keyy)}>&#x21e9;</div>
+                    <div className="list_item_card_button" onClick={this.props.deleteItem.bind(this, this.props.listItem.key)}>&#10005;</div>
+                </div>
             </div>
         )
     }

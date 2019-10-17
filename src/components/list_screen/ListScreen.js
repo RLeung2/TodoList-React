@@ -8,7 +8,8 @@ import PropTypes from 'prop-types';
 export class ListScreen extends Component {
     state = {
         name: this.props.todoList.name,
-        owner: this.props.todoList.owner
+        owner: this.props.todoList.owner,
+        todoListItems: this.props.todoList.items
     }
 
     getListName() {
@@ -50,6 +51,20 @@ export class ListScreen extends Component {
         dialog.classList.remove("is_visible")
     }
 
+    moveItemUp = () => {
+        
+    }
+
+    moveItemDown() {
+
+    }
+
+    deleteItem = (key) => {
+        console.log(key)
+        this.setState({ todoListItems: [...this.state.todoListItems.filter(item => item.key !== key)] });
+        console.log(this.state.todoListItems)
+    }
+
     render() {
         return (
             <div id="todo_list">
@@ -77,7 +92,7 @@ export class ListScreen extends Component {
                         />
                     </div>
                 </div>
-                <ListItemsTable todoList={this.props.todoList} />
+                <ListItemsTable todoList={this.props.todoList} moveItemUp={this.moveItemUp} moveItemDown={this.moveItemDown} deleteItem={this.props.deleteItem}/>
                 <ListDeleteModal confirmDelete={this.confirmDelete} cancelDelete={this.cancelDelete}/>
             </div>
         )
