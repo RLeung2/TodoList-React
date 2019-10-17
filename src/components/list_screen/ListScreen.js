@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ListHeading from './ListHeading'
 import ListItemsTable from './ListItemsTable'
 import ListTrash from './ListTrash'
+import ListDeleteModal from './ListDeleteModal'
 import PropTypes from 'prop-types';
 
 export class ListScreen extends Component {
@@ -37,6 +38,9 @@ export class ListScreen extends Component {
 
     processDeleteList = (key) => {
         console.log(key)
+        let dialog = document.getElementById("modal_yes_no_dialog");
+        dialog.classList.add("is_visible")
+        console.log(dialog.classList)
     }
 
     render() {

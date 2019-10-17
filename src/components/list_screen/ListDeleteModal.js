@@ -4,7 +4,21 @@ export class ListDeleteModal extends Component {
 
     render() {
         return (
-            <div id="list_trash" onClick={this.props.processDeleteList}>&#128465;</div>
+            <div className="modal" id="modal_yes_no_dialog" data-animation="slideInOutLeft">
+                <div className="modal_dialog">
+                    <header className="dialog_header">
+                    Delete list?
+                    </header>
+                    <section className="dialog_content">
+                        <p><strong>Are you sure you want to delete this list?</strong></p>
+                    </section>
+                    <button id="dialog_yes_button">Yes</button>
+                    <button id="dialog_no_button" >No</button>
+                    <footer className="dialog_footer">
+                        The list will not be retreivable.
+                    </footer>
+                    </div>
+            </div>
         )
     }
 }
