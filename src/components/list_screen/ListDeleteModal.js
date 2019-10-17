@@ -12,8 +12,8 @@ export class ListDeleteModal extends Component {
                     <section className="dialog_content">
                         <p><strong>Are you sure you want to delete this list?</strong></p>
                     </section>
-                    <button id="dialog_yes_button">Yes</button>
-                    <button id="dialog_no_button" >No</button>
+                    <button id="dialog_yes_button" onClick={this.props.confirmDelete}>Yes</button>
+                    <button id="dialog_no_button" onClick={this.props.cancelDelete}>No</button>
                     <footer className="dialog_footer">
                         The list will not be retreivable.
                     </footer>

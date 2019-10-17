@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 export class ListScreen extends Component {
     state = {
         name: this.props.todoList.name,
-        owner: ''
+        owner: this.props.todoList.owner
     }
 
     getListName() {
@@ -36,18 +36,25 @@ export class ListScreen extends Component {
         this.props.todoList.owner = e.target.value
     }
 
-    processDeleteList = (key) => {
-        console.log(key)
+    processDeleteList = () => {
         let dialog = document.getElementById("modal_yes_no_dialog");
         dialog.classList.add("is_visible")
-        console.log(dialog.classList)
+    }
+
+    confirmDelete = () => {
+        this.props.deleteList(this.props.todoList.key)
+    }
+
+    cancelDelete = () => {
+        let dialog = document.getElementById("modal_yes_no_dialog");
+        dialog.classList.remove("is_visible")
     }
 
     render() {
         return (
             <div id="todo_list">
                 <ListHeading goHome={this.props.goHome} />
-                <ListTrash processDeleteList={this.processDeleteList.bind(this, this.props.todoList.key)}/>
+                <ListTrash processDeleteList={this.processDeleteList}/>
                 <div id="list_details_container">
                     <div id="list_details_name_container" className="text_toolbar">
                         <span id="list_name_prompt">Name:</span>
@@ -71,7 +78,7 @@ export class ListScreen extends Component {
                     </div>
                 </div>
                 <ListItemsTable todoList={this.props.todoList} />
-                <ListDeleteModal />
+                <ListDeleteModal confirmDelete={this.confirmDelete} cancelDelete={this.cancelDelete}/>
             </div>
         )
     }
