@@ -36,15 +36,20 @@ class App extends Component {
     console.log("currentScreen: " + this.state.currentScreen);
   }
 
-  addItem = (newItem) => {
+  addItem = (newItem, isNew) => {
     this.setState({todoItem: newItem})
+    this.setState({isNewItem: isNew})
 
     let newCurrentList = this.state.currentList
     newCurrentList.items.push(newItem)
 
     this.setState({currentList: newCurrentList})
 
-    this.editItem(this.state.todoItem)
+    this.edit(this.state.todoItem)
+  }
+
+  edit = (itemToEdit) => {
+    this.setState({currentScreen: AppScreen.ITEM_SCREEN})
   }
 
   editItem = (itemToEdit) => {
@@ -67,6 +72,13 @@ class App extends Component {
     this.setState({currentScreen: AppScreen.LIST_SCREEN})
   }
 
+  cancelAdd = () => {
+    let newCurrentList = this.state.currentList
+    newCurrentList.items.pop()
+
+    this.setState({currentList: newCurrentList})
+  }
+
   render() {
     switch(this.state.currentScreen) {
       case AppScreen.HOME_SCREEN:
@@ -82,6 +94,7 @@ class App extends Component {
           todoList={this.state.currentList} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen
+          cancelAdd={this.cancelAdd}
           isNewItem={this.state.isNewItem}
           goList={this.goList}
           submitChange={this.submitChange}

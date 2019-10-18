@@ -66,6 +66,11 @@ export class ItemScreen extends Component {
         this.props.todoItem.assigned_to = this.state.originalAssignedTo
         this.props.todoItem.due_date = this.state.originalDueDate
         this.props.todoItem.completed = this.state.originalCompleted
+
+        if (this.props.isNewItem) {
+            this.props.cancelAdd()
+        }
+
         this.props.goList()
     }
 

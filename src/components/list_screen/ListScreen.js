@@ -135,7 +135,7 @@ export class ListScreen extends Component {
                 <ListDeleteModal confirmDelete={this.confirmDelete} cancelDelete={this.cancelDelete}/>
                 <div 
                     className="list_item_add_card" 
-                    onClick={this.props.editItem.bind(this, this.state.newItem)}>
+                    onClick={this.props.addItem.bind(this, this.state.newItem)}>
                     &#x2b;
                 </div>
             </div>
