@@ -4,12 +4,21 @@ import ListItemsTable from './ListItemsTable'
 import ListTrash from './ListTrash'
 import ListDeleteModal from './ListDeleteModal'
 import PropTypes from 'prop-types';
+import ItemScreen from '../item_screen/ItemScreen'
+import uuid from 'uuid';
 
 export class ListScreen extends Component {
     state = {
         name: this.props.todoList.name,
         owner: this.props.todoList.owner,
-        todoList: this.props.todoList
+        todoList: this.props.todoList,
+        newItem: {
+            key: uuid.v4(),
+            description:'',
+            due_date:'',
+            assigned_to:'',
+            completed: true
+        }
     }
 
     getListName() {
@@ -84,6 +93,16 @@ export class ListScreen extends Component {
         this.setState({ todoList: newTodoList });
     }
 
+    addItem = () => {
+        let newItem = {
+            key: uuid.v4(),
+            description:'',
+            due_date:'',
+            assigned_to:'',
+            completed: true
+        }
+    }
+
     render() {
         return (
             <div id="todo_list">
@@ -111,8 +130,10 @@ export class ListScreen extends Component {
                         />
                     </div>
                 </div>
-                <ListItemsTable todoList={this.props.todoList} moveItemUp={this.moveItemUp} moveItemDown={this.moveItemDown} deleteItem={this.deleteItem}/>
+                <ListItemsTable todoList={this.props.todoList} moveItemUp={this.moveItemUp} moveItemDown={this.moveItemDown} 
+                deleteItem={this.deleteItem} processEditItem={this.processEditItem}/>
                 <ListDeleteModal confirmDelete={this.confirmDelete} cancelDelete={this.cancelDelete}/>
+                <div className="list_item_add_card" onClick={this.props.editItem.bind(this, this.state.newItem)}>&#x2b;</div>
             </div>
         )
     }

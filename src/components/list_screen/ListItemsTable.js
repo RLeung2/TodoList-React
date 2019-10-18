@@ -13,6 +13,7 @@ export class ListItemsTable extends Component {
                 {
                     this.props.todoList.items.map((todoItem, index)=>(
                         <ListItemCard
+                            onClick={this.props.processEditItem}
                             index={index}
                             moveItemUp={this.props.moveItemUp} 
                             moveItemDown={this.props.moveItemDown} 
