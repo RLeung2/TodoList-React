@@ -14,8 +14,6 @@ export class ItemScreen extends Component {
         originalCompleted: this.props.todoItem.completed
     }
 
-    const 
-
     onChangeDescription = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;

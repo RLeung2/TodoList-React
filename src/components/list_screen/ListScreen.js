@@ -18,7 +18,8 @@ export class ListScreen extends Component {
             due_date:'',
             assigned_to:'',
             completed: false
-        }
+        },
+        sortingCriteria: ""
     }
 
     getListName() {
@@ -98,9 +99,7 @@ export class ListScreen extends Component {
 
         event.stopPropagation()
     }
-
     
-
     render() {
         return (
             <div id="todo_list">
