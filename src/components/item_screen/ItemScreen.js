@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 export class ItemScreen extends Component {
     state = {
         description: "",
-        assingedTo: "",
+        assignedTo: "",
         dueDate: "",
         completed: false,
 
         originalDescription: this.props.todoItem.description,
         originalDueDate: this.props.todoItem.due_date,
-        originalAssignedTo: this.props.todoItem.assinged_to,
+        originalAssignedTo: this.props.todoItem.assigned_to,
         originalCompleted: this.props.todoItem.completed
     }
 
@@ -92,7 +92,7 @@ export class ItemScreen extends Component {
                         id="item_assigned_to_textfield" 
                         className="item_input" 
                         type="input"
-                        defaultValue={this.props.todoItem.assinged_to}
+                        defaultValue={this.props.todoItem.assigned_to}
                         name="assignedTo"
                         onChange={this.onChangeAssignedTo} />
                     <div id="item_due_date_prompt" className="item_prompt">Due Date:</div>

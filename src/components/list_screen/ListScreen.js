@@ -60,7 +60,7 @@ export class ListScreen extends Component {
         dialog.classList.remove("is_visible")
     }
 
-    moveItemUp = (index) => {
+    moveItemUp = (index, event) => {
         if ((0 < index) && (index < this.state.todoList.items.length)) {
             let newTodoList = this.state.todoList
             let newListItems = this.state.todoList.items
@@ -71,9 +71,11 @@ export class ListScreen extends Component {
             newTodoList.items = newListItems
             this.setState({ todoList: newTodoList })
         }
+
+        event.stopPropagation()
     }
 
-    moveItemDown= (index) => {
+    moveItemDown= (index, event) => {
         if ((this.state.todoList.items.length > 1) && (index < this.state.todoList.items.length-1)) {
             let newTodoList = this.state.todoList
             let newListItems = this.state.todoList.items
@@ -84,24 +86,20 @@ export class ListScreen extends Component {
             newTodoList.items = newListItems
             this.setState({ todoList: newTodoList })
         }
+
+        event.stopPropagation()
     }
 
-    deleteItem = (key) => {
+    deleteItem = (key, event) => {
         let newTodoList = this.state.todoList
         let newListItems = [...newTodoList.items.filter(item => item.key !== key)]
         newTodoList.items = newListItems
         this.setState({ todoList: newTodoList });
+
+        event.stopPropagation()
     }
 
-    addItem = () => {
-        let newItem = {
-            key: uuid.v4(),
-            description:'',
-            due_date:'',
-            assigned_to:'',
-            completed: true
-        }
-    }
+    
 
     render() {
         return (
@@ -131,7 +129,7 @@ export class ListScreen extends Component {
                     </div>
                 </div>
                 <ListItemsTable todoList={this.props.todoList} moveItemUp={this.moveItemUp} moveItemDown={this.moveItemDown} 
-                deleteItem={this.deleteItem} processEditItem={this.processEditItem}/>
+                deleteItem={this.deleteItem} editItem={this.props.editItem}/>
                 <ListDeleteModal confirmDelete={this.confirmDelete} cancelDelete={this.cancelDelete}/>
                 <div 
                     className="list_item_add_card" 

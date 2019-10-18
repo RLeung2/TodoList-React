@@ -53,13 +53,8 @@ class App extends Component {
   }
 
   editItem = (itemToEdit) => {
-    this.setState({currentScreen: AppScreen.ITEM_SCREEN});
     this.setState({todoItem: itemToEdit})
-
-    let newCurrentList = this.state.currentList
-    newCurrentList.items.push(itemToEdit)
-
-    this.setState({currentList: newCurrentList})
+    this.setState({currentScreen: AppScreen.ITEM_SCREEN});
   }
 
   deleteList = (key) => {
@@ -70,6 +65,7 @@ class App extends Component {
   submitChange = (newTodoItem) => {
     this.setState({todoItem: newTodoItem})
     this.setState({currentScreen: AppScreen.LIST_SCREEN})
+    this.setState({isNewItem: false})
   }
 
   cancelAdd = () => {
@@ -77,6 +73,7 @@ class App extends Component {
     newCurrentList.items.pop()
 
     this.setState({currentList: newCurrentList})
+    this.setState({isNewItem: false})
   }
 
   render() {
