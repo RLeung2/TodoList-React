@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import ListItemCard from './ListItemCard'
 
 export class ListItemsTable extends Component {
+    state = {
+        todoList: this.props.todoList
+    }
+
     render() {
         return (
             <div id="list_items_container">
@@ -13,6 +17,7 @@ export class ListItemsTable extends Component {
                 {
                     this.props.todoList.items.map((todoItem, index)=>(
                         <ListItemCard
+                            todoList={this.state.todoList}
                             editItem={this.props.editItem}
                             index={index}
                             moveItemUp={this.props.moveItemUp} 

@@ -36,6 +36,17 @@ class App extends Component {
     console.log("currentScreen: " + this.state.currentScreen);
   }
 
+  addTodoList = (newList) => {
+    this.setState({currentList: newList})
+
+    let newTodoLists = this.state.todoLists
+    newTodoLists.push(newList)
+
+    this.setState({todoLists: newTodoLists})
+
+    this.setState({currentScreen: AppScreen.LIST_SCREEN})
+  }
+
   addItem = (newItem, isNew) => {
     this.setState({todoItem: newItem})
     this.setState({isNewItem: isNew})
@@ -80,8 +91,9 @@ class App extends Component {
     switch(this.state.currentScreen) {
       case AppScreen.HOME_SCREEN:
         return <HomeScreen
-        loadList={this.loadList.bind(this)} 
-        todoLists={this.state.todoLists} />;
+          addTodoList={this.addTodoList.bind(this)}
+          loadList={this.loadList.bind(this)} 
+          todoLists={this.state.todoLists} />;
       case AppScreen.LIST_SCREEN:            
         return <ListScreen
           addItem={this.addItem.bind(this)}

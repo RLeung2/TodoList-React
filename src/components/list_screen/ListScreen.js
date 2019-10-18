@@ -128,7 +128,7 @@ export class ListScreen extends Component {
                     </div>
                 </div>
                 <ListItemsTable todoList={this.props.todoList} moveItemUp={this.moveItemUp} moveItemDown={this.moveItemDown} 
-                deleteItem={this.deleteItem} editItem={this.props.editItem}/>
+                deleteItem={this.deleteItem} editItem={this.props.editItem} />
                 <ListDeleteModal confirmDelete={this.confirmDelete} cancelDelete={this.cancelDelete}/>
                 <div 
                     className="list_item_add_card" 
