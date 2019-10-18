@@ -15,12 +15,17 @@ class App extends Component {
     currentScreen: AppScreen.HOME_SCREEN,
     todoLists: testTodoListData.todoLists,
     currentList: null,
-    todoItem: null
+    todoItem: null,
+    isNewItem: false
   }
 
   goHome = () => {
     this.setState({currentScreen: AppScreen.HOME_SCREEN});
     this.setState({currentList: null});
+  }
+
+  goList = () => {
+    this.setState({currentScreen: AppScreen.LIST_SCREEN});
   }
 
   loadList = (todoListToLoad) => {
@@ -31,15 +36,35 @@ class App extends Component {
     console.log("currentScreen: " + this.state.currentScreen);
   }
 
+  addItem = (newItem) => {
+    this.setState({todoItem: newItem})
+
+    let newCurrentList = this.state.currentList
+    newCurrentList.items.push(newItem)
+
+    this.setState({currentList: newCurrentList})
+
+    this.editItem(this.state.todoItem)
+  }
+
   editItem = (itemToEdit) => {
     this.setState({currentScreen: AppScreen.ITEM_SCREEN});
     this.setState({todoItem: itemToEdit})
-    console.log(itemToEdit)
+
+    let newCurrentList = this.state.currentList
+    newCurrentList.items.push(itemToEdit)
+
+    this.setState({currentList: newCurrentList})
   }
 
   deleteList = (key) => {
     this.setState({ todoLists: [...this.state.todoLists.filter(todoList => todoList.key !== key)] });
     this.goHome();
+  }
+
+  submitChange = (newTodoItem) => {
+    this.setState({todoItem: newTodoItem})
+    this.setState({currentScreen: AppScreen.LIST_SCREEN})
   }
 
   render() {
@@ -50,12 +75,16 @@ class App extends Component {
         todoLists={this.state.todoLists} />;
       case AppScreen.LIST_SCREEN:            
         return <ListScreen
+          addItem={this.addItem.bind(this)}
           editItem={this.editItem.bind(this)}
           deleteList={this.deleteList}
           goHome={this.goHome.bind(this)}
           todoList={this.state.currentList} />;
       case AppScreen.ITEM_SCREEN:
         return <ItemScreen
+          isNewItem={this.state.isNewItem}
+          goList={this.goList}
+          submitChange={this.submitChange}
           currentScreen={this.state.currentScreen}
           todoItem={this.state.todoItem} />;
       default:

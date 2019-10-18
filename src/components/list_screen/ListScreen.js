@@ -17,7 +17,7 @@ export class ListScreen extends Component {
             description:'',
             due_date:'',
             assigned_to:'',
-            completed: true
+            completed: false
         }
     }
 
@@ -133,7 +133,11 @@ export class ListScreen extends Component {
                 <ListItemsTable todoList={this.props.todoList} moveItemUp={this.moveItemUp} moveItemDown={this.moveItemDown} 
                 deleteItem={this.deleteItem} processEditItem={this.processEditItem}/>
                 <ListDeleteModal confirmDelete={this.confirmDelete} cancelDelete={this.cancelDelete}/>
-                <div className="list_item_add_card" onClick={this.props.editItem.bind(this, this.state.newItem)}>&#x2b;</div>
+                <div 
+                    className="list_item_add_card" 
+                    onClick={this.props.editItem.bind(this, this.state.newItem)}>
+                    &#x2b;
+                </div>
             </div>
         )
     }
