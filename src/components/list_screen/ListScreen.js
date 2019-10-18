@@ -19,7 +19,7 @@ export class ListScreen extends Component {
             assigned_to:'',
             completed: false
         },
-        sortingCriteria: ""
+        sortCriteria: ""
     }
 
     getListName() {
@@ -99,6 +99,34 @@ export class ListScreen extends Component {
 
         event.stopPropagation()
     }
+
+    sortTasks = (sortCriteria) => {
+        console.log("hey")
+        this.setState({sortCriteria: sortCriteria})
+
+        let newTodoList = this.state.todoList
+        newTodoList.items = newTodoList.items.sort(this.compare)
+
+        this.setState({todoList: newTodoList})
+    }
+
+    compare(item1, item2) {
+        let criteria = this.state.sortCriteria
+        if (criteria === "taskDecreasing") {
+            let temp = item1;
+            item1 = item2;
+            item2 = temp;
+        }
+
+        if ( (criteria === "taskDecreasing") || (criteria === "taskIncreasing") ) {
+            if (item1.description < item2.description)
+                return -1;
+            else if (item1.description > item2.description)
+                return 1;
+            else
+                return 0;
+        }
+    }
     
     render() {
         return (
@@ -127,14 +155,20 @@ export class ListScreen extends Component {
                         />
                     </div>
                 </div>
-                <ListItemsTable todoList={this.props.todoList} moveItemUp={this.moveItemUp} moveItemDown={this.moveItemDown} 
-                deleteItem={this.deleteItem} editItem={this.props.editItem} />
-                <ListDeleteModal confirmDelete={this.confirmDelete} cancelDelete={this.cancelDelete}/>
+                <ListItemsTable 
+                    todoList={this.props.todoList} 
+                    moveItemUp={this.moveItemUp} 
+                    moveItemDown={this.moveItemDown} 
+                    deleteItem={this.deleteItem} 
+                    editItem={this.props.editItem} 
+                    sortTasks={this.sortTasks.bind(this)}
+                    sortTasksByDueDate={this.sortTasksByDueDate} />
                 <div 
                     className="list_item_add_card" 
                     onClick={this.props.addItem.bind(this, this.state.newItem)}>
                     &#x2b;
                 </div>
+                <ListDeleteModal confirmDelete={this.confirmDelete} cancelDelete={this.cancelDelete}/>
             </div>
         )
     }
